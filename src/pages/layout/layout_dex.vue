@@ -84,7 +84,8 @@
   .el-main {
 
     color: #333;
-    text-align: center;
+    text-align: center; 
+        padding: 0px;   
 
   }
 

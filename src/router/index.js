@@ -77,18 +77,26 @@ router.beforeEach((to, from, next) => {
  */
 let flag = 0 //解决登录点两次的问题还有刷新空白的问题
 function addDynamicMenuAndRoutes(to, from, next) {
- handleIFrameUrl(to.path)
+  handleIFrameUrl(to.path)
   if (flag == 0) {
     const menuList = [{
       path: "/item/test",
       component: 'layout',
       name: "sfdas",
-    },{
+      children: []
+    }, {
       path: "/item/test2",
-      component: 'layout',//任意的
+      component: 'layout', //任意的
       name: "sfdas",
+      children: []
+    }, {
+      path: "http://www.baidu.com",//路由是这个http://localhost:8080/#/www.baidu.com
+      component: 'baisu', //任意的
+      name: "sfda12s",
+      children: []
     }];
-    debugger
+    //左边的菜单从这里取值
+ store.commit('setNavTree', menuList)
     // 添加动态路由
     let dynamicRoutes = addDynamicRoutes(menuList)
     console.log(dynamicRoutes)
@@ -118,7 +126,6 @@ function addDynamicMenuAndRoutes(to, from, next) {
  */
 function handleIFrameUrl(path) {
   // 嵌套页面，保存iframeUrl到store，供IFrame组件读取展示
-  debugger
   let url = path
   let length = store.state.iframe.iframeUrls.length
   for (let i = 0; i < length; i++) {
@@ -137,6 +144,7 @@ function handleIFrameUrl(path) {
  * @param {*} routes 递归创建的动态(菜单)路由
  */
 function addDynamicRoutes(menuList = [], routes = []) {
+
   var temp = []
   for (var i = 0; i < menuList.length; i++) {
     console.log(menuList[i].children)
@@ -161,10 +169,10 @@ function addDynamicRoutes(menuList = [], routes = []) {
         route['path'] = path
         route['component'] = resolve => require([`@/pages/common/IFrame`], resolve)
         // 存储嵌套页面路由路径和访问URL
-        let path = getIFrameUrl(menuList[i].path)
+        let url = getIFrameUrl(menuList[i].path)
         let iFrameUrl = {
           'path': path,
-          'url': path
+          'url': url
         }
         store.commit('addIFrameUrl', iFrameUrl)
       } else {
