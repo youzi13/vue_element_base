@@ -17,7 +17,7 @@ const router = new Router({
   routes: [{
       path: '/',
       name: 'index',
-      component: Layout,
+      component: Layout_top,
       hide: true,
       meta: {
         title: '首页',
@@ -80,31 +80,37 @@ function addDynamicMenuAndRoutes(to, from, next) {
   handleIFrameUrl(to.path)
   if (flag == 0) {
     const menuList = [{
+      id:1,
       path: "/item/test",
       component: 'layout',
       name: "首页",
       icon:"el-icon-menu",
       children: []
     }, {
+      id:2,
       path: "/item/test2",
       component: 'layout', //任意的
       name: "普通路由",
       icon:"el-icon-menu",
-      children: []},{
+      children: []
+    },{
       path: "/item/test2",
       component: 'layout', //任意的
+      id:3,
       name: "普通路由",
       icon:"el-icon-menu",
       children: [{
         path: "/item/test",
         component: 'layout',
         icon:"el-icon-menu",
+        id:4,
         name: "首页",
         children: [
           {
             path: "http://www.baidu.com",//路由是这个http://localhost:8080/#/www.baidu.com
             component: 'baisu', //任意的
             name: "外联地址",
+            id:5,
             icon:"el-icon-menu",
             children: []
           }
@@ -114,7 +120,16 @@ function addDynamicMenuAndRoutes(to, from, next) {
       path: "http://www.baidu.com",//路由是这个http://localhost:8080/#/www.baidu.com
       component: 'baisu', //任意的
       name: "外联地址",
-      children: []
+      id:6,
+      children: [
+        {
+          path: "http://www.taobao.com",//路由是这个http://localhost:8080/#/www.baidu.com
+          component: 'baisu', //任意的
+          name: "外联地址",
+          icon:"el-icon-menu",
+          children: []
+        }
+      ]
     }];
     //左边的菜单从这里取值
  store.commit('setNavTree', menuList)

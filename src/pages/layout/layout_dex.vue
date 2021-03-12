@@ -6,7 +6,7 @@
     <el-container class="maincontent">
         <el-aside width="200px">
             <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#0b4577c7" text-color="#fff" active-text-color="#ffd04b">
-             <menu-tree v-for="(item,index) in menusList" :key="index" :menu="item"></menu-tree>
+             <menu-tree v-for="item in menusList" :key="item.id" :menu="item"></menu-tree>
             </el-menu>
         </el-aside>
         <el-main>
@@ -37,10 +37,7 @@ export default {
         }
     },
     mounted() {
-
-        this.menusList = this.$store.state.menu.navTree
-        var fsfees = this.menusList[0].children.length
-        console.log(this.menusList[0].children)
+        this.menusList = this.$store.state.menu.navTree      
     }
 }
 </script>
