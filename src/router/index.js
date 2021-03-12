@@ -82,17 +82,38 @@ function addDynamicMenuAndRoutes(to, from, next) {
     const menuList = [{
       path: "/item/test",
       component: 'layout',
-      name: "sfdas",
+      name: "首页",
+      icon:"el-icon-menu",
       children: []
     }, {
       path: "/item/test2",
       component: 'layout', //任意的
-      name: "sfdas",
-      children: []
+      name: "普通路由",
+      icon:"el-icon-menu",
+      children: []},{
+      path: "/item/test2",
+      component: 'layout', //任意的
+      name: "普通路由",
+      icon:"el-icon-menu",
+      children: [{
+        path: "/item/test",
+        component: 'layout',
+        icon:"el-icon-menu",
+        name: "首页",
+        children: [
+          {
+            path: "http://www.baidu.com",//路由是这个http://localhost:8080/#/www.baidu.com
+            component: 'baisu', //任意的
+            name: "外联地址",
+            icon:"el-icon-menu",
+            children: []
+          }
+        ]
+      },]
     }, {
       path: "http://www.baidu.com",//路由是这个http://localhost:8080/#/www.baidu.com
       component: 'baisu', //任意的
-      name: "sfda12s",
+      name: "外联地址",
       children: []
     }];
     //左边的菜单从这里取值

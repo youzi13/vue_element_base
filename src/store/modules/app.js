@@ -1,6 +1,6 @@
 export default {
     state: {
-        appName: "销毁系统",  // 应用名称
+        appName: "VUE-Elmentui",  // 应用名称
         themeColor: "#D9534F",  // 主题颜色
         oldThemeColor: "#D9534F",   // 上一次主题颜色
         collapse:false,  // 导航栏收缩状态
