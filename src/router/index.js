@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/store'
 import Layout_top from '@/pages/layout/layout_top'
-import Layout from '@/pages/layout/layout_dex'
+import Layout_dex from '@/pages/layout/layout_dex'
 import {
   getIFramePath,
   getIFrameUrl
@@ -17,7 +17,7 @@ const router = new Router({
   routes: [{
       path: '/',
       name: 'index',
-      component: Layout_top,
+      component: Layout_dex,
       hide: true,
       meta: {
         title: '首页',
